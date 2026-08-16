@@ -1,4 +1,10 @@
 package com.gustavo.books.catalogue;
 
-public class BookResponse {
+public record BookResponse(
+        Long id,
+        String title,
+        String author,
+        String genre,
+        Integer publicationYear
+) {
 }

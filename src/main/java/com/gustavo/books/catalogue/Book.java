@@ -26,6 +26,15 @@ public class Book {
 
     private Integer publicationYear;
 
+    public Book() {
+    }
+
+    public Book(String title, String author, String genre, Integer publicationYear) {
+        this.title = title;
+        this.author = author;
+        this.genre = genre;
+        this.publicationYear = publicationYear;
+    }
 
     public Long getId() {
         return id;
