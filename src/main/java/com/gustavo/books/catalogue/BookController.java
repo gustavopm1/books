@@ -1,7 +1,6 @@
 package com.gustavo.books.catalogue;
 
 import jakarta.validation.Valid;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
@@ -18,13 +17,13 @@ public class BookController {
     }
 
     @GetMapping
-    public Page<BookResponse> findAll(
+    public PageResponse<BookResponse> findAll(
             @RequestParam(required = false) String search,
             @RequestParam(required = false) String genre,
             @PageableDefault(sort = {"title", "id"})
             Pageable pageable
     ) {
-        return bookService.findAll(search, genre, pageable);
+        return PageResponse.from(bookService.findAll(search, genre, pageable));
     }
 
     @PostMapping

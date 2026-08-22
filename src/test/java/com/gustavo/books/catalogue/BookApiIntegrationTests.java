@@ -38,10 +38,10 @@ class BookApiIntegrationTests {
 
         mockMvc.perform(get("/api/books"))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.content.length()").value(3))
-                .andExpect(jsonPath("$.content[0].title").value("Alpha"))
-                .andExpect(jsonPath("$.content[1].title").value("Bravo"))
-                .andExpect(jsonPath("$.content[2].title").value("Charlie"));
+                .andExpect(jsonPath("$.items.length()").value(3))
+                .andExpect(jsonPath("$.items[0].title").value("Alpha"))
+                .andExpect(jsonPath("$.items[1].title").value("Bravo"))
+                .andExpect(jsonPath("$.items[2].title").value("Charlie"));
     }
 
     @Test
@@ -54,9 +54,9 @@ class BookApiIntegrationTests {
                         .param("search", " night ")
                         .param("genre", " FANTASY "))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.content.length()").value(1))
-                .andExpect(jsonPath("$.content[0].title").value("Night Garden"))
-                .andExpect(jsonPath("$.content[0].genre").value("Fantasy"));
+                .andExpect(jsonPath("$.items.length()").value(1))
+                .andExpect(jsonPath("$.items[0].title").value("Night Garden"))
+                .andExpect(jsonPath("$.items[0].genre").value("Fantasy"));
     }
 
     @Test
@@ -72,12 +72,12 @@ class BookApiIntegrationTests {
                         .param("size", "2")
                         .param("sort", "title,asc"))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.content.length()").value(2))
-                .andExpect(jsonPath("$.content[0].title").value("Charlie"))
-                .andExpect(jsonPath("$.content[1].title").value("Delta"))
-                .andExpect(jsonPath("$.number").value(1))
+                .andExpect(jsonPath("$.items.length()").value(2))
+                .andExpect(jsonPath("$.items[0].title").value("Charlie"))
+                .andExpect(jsonPath("$.items[1].title").value("Delta"))
+                .andExpect(jsonPath("$.page").value(1))
                 .andExpect(jsonPath("$.size").value(2))
-                .andExpect(jsonPath("$.totalElements").value(5))
+                .andExpect(jsonPath("$.totalItems").value(5))
                 .andExpect(jsonPath("$.totalPages").value(3));
     }
 
